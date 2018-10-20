@@ -17,3 +17,7 @@ Hardware: Internet connection.
 Software: python3 on linux
 
 Can work on windows.
+
+Download the files and run shell script.
+
+Modify url links to update as necessary.
