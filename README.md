@@ -24,4 +24,4 @@ Modify url links to update as necessary.
 
 #IMPORTANT:
 
-Analyse results objectively as output may be misleading. Use common sense for prediction of possible outbreaks. 
+Analyse results objectively as output may be misleading. Use discretion for prediction of possible outbreaks as it may spread panic. 
