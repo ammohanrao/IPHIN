@@ -21,3 +21,7 @@ Can work on windows.
 Download the files and run shell script.
 
 Modify url links to update as necessary.
+
+#IMPORTANT:
+
+Analyse results objectively as output may be misleading. Use common sense for prediction of possible outbreaks. 
