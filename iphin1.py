@@ -4,8 +4,9 @@ from bs4 import BeautifulSoup
 import re
 from collections import Counter
 import operator
+import gc
 
-response = requests.get("http://www.thehindu.com/archive/web/2018/10/20/").text
+response = requests.get("http://www.thehindu.com/archive/web/2018/10/14/").text
 soup = BeautifulSoup(response,"lxml")
 
 for link in soup.select("a[href$='.ece']"):    
@@ -26,7 +27,7 @@ for link in soup.select("a[href$='.ece']"):
 	words_ns = []
 	for word in words:
 		if word not in sw:
-			words_ns.append(word)
+			words_ns.append(word.lower())
 	
 	phword = []
 	file = open(filename)
@@ -41,11 +42,7 @@ for link in soup.select("a[href$='.ece']"):
 			word_freq.append([s])
 			word_freq.append([n])
 	print(url,'	frequency=	',word_freq)
-
-
-
-
-
-
-
-
+	del words_ns
+	del phword
+	del word_freq
+	gc.collect()
