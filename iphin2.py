@@ -6,8 +6,9 @@ from urllib.parse import urlparse
 import re
 from collections import Counter
 import operator
+import gc
 
-url1 = 'https://timesofindia.indiatimes.com/2018/10/18/archivelist/year-2018,month-10,starttime-43391.cms'
+url1 = 'https://timesofindia.indiatimes.com/2018/10/20/archivelist/year-2018,month-10,starttime-43393.cms'
 
 html = requests.get(url1)
 soup = bs4.BeautifulSoup(html.text,"lxml")
@@ -32,7 +33,7 @@ for link in soup.select("a[href$='.cms']"):
 		
 		for word in words:
 			if word not in sw:
-				words_ns.append(word)
+				words_ns.append(word.lower())
 		
 		phword = []
 		file = open(filename)
@@ -49,6 +50,10 @@ for link in soup.select("a[href$='.cms']"):
 		
 		print(url2,'	frequency=	',word_freq)
 		url3 = url2
+		del words_ns
+		del phword
+		del word_freq
+		gc.collect()
 	else:
 		url2 = url3 + url2
 		filename = 'ph_ftrs51.txt'
@@ -68,12 +73,24 @@ for link in soup.select("a[href$='.cms']"):
 		
 		for word in words:
 			if word not in sw:
-				words_ns.append(word)
+				words_ns.append(word.lower())
 		
 		phword = []
 		file = open(filename)
 		for line in file:
 			phword.append(line.strip())
 			
+		word_freq = []
+		
+		for s in phword:
+			n = operator.countOf(words_ns, s)
+			if n > 0:
+				word_freq.append([s])
+				word_freq.append([n])
+			
 		print(url2,'	frequency=	',word_freq)
+		del words_ns
+		del phword
+		del word_freq
+		gc.collect()
 		
