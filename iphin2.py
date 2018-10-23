@@ -7,16 +7,24 @@ import re
 from collections import Counter
 import operator
 import gc
+import pandas as pd
+from pandas import read_csv
 
 url1 = 'https://timesofindia.indiatimes.com/2018/10/20/archivelist/year-2018,month-10,starttime-43393.cms'
 
 html = requests.get(url1)
 soup = bs4.BeautifulSoup(html.text,"lxml")
+	
 for link in soup.select("a[href$='.cms']"):
 	url2 = link.get('href')
 	result = urlparse(url2)
+	
+	ph_data = pd.read_csv(r"ph_ftrs51dic.csv",usecols=[0])
+	phword = []
+	for index, row in ph_data.iterrows():
+		phword.append(row['english'])
 	if all([result.scheme, result.netloc]):
-		filename = 'ph_ftrs51.txt'
+
 		r = requests.get(url2)
 		type(r)
 		
@@ -34,11 +42,6 @@ for link in soup.select("a[href$='.cms']"):
 		for word in words:
 			if word not in sw:
 				words_ns.append(word.lower())
-		
-		phword = []
-		file = open(filename)
-		for line in file:
-			phword.append(line.strip())
 			
 		word_freq = []
 		
@@ -56,7 +59,6 @@ for link in soup.select("a[href$='.cms']"):
 		gc.collect()
 	else:
 		url2 = url3 + url2
-		filename = 'ph_ftrs51.txt'
 		r = requests.get(url2)
 		type(r)
 		
@@ -74,11 +76,6 @@ for link in soup.select("a[href$='.cms']"):
 		for word in words:
 			if word not in sw:
 				words_ns.append(word.lower())
-		
-		phword = []
-		file = open(filename)
-		for line in file:
-			phword.append(line.strip())
 			
 		word_freq = []
 		
@@ -93,4 +90,3 @@ for link in soup.select("a[href$='.cms']"):
 		del phword
 		del word_freq
 		gc.collect()
-		
