@@ -5,13 +5,15 @@ import re
 from collections import Counter
 import operator
 import gc
+import pandas as pd
+from pandas import read_csv
 
 response = requests.get("http://www.thehindu.com/archive/web/2018/10/14/").text
 soup = BeautifulSoup(response,"lxml")
+ph_data = pd.read_csv(r"ph_ftrs51dic.csv",usecols=[0])
 
 for link in soup.select("a[href$='.ece']"):    
 	url = link.get('href')
-	filename = 'ph_ftrs51.txt'
 	r = requests.get(url)
 	type(r)
 	
@@ -28,11 +30,10 @@ for link in soup.select("a[href$='.ece']"):
 	for word in words:
 		if word not in sw:
 			words_ns.append(word.lower())
-	
+			
 	phword = []
-	file = open(filename)
-	for line in file:
-		phword.append(line.strip())
+	for index, row in ph_data.iterrows():
+		phword.append(row['english'])
 	
 	word_freq = []
 	
