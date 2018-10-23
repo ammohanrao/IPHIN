@@ -12,9 +12,15 @@ source = urllib.request.urlopen('http://archives.eenadu.net/10-21-2018/home.aspx
 soup = bs.BeautifulSoup(source,'lxml')
 
 ph_data = pd.read_csv(r"ph_ftrs51dic.csv",usecols=[9])
+en_data = pd.read_csv(r"ph_ftrs51dic.csv",usecols=[0])
+
 phword = []
+enword = []
 for index, row in ph_data.iterrows():
 	phword.append(row['telugu'])
+	
+for index, row in en_data.iterrows():
+	enword.append(row['english'])
 	
 for link in soup.select("a[href$='.aspx']"):
 	url2 = link.get('href')	
@@ -31,13 +37,13 @@ for link in soup.select("a[href$='.aspx']"):
 		words = word_tokenize(text)
 			
 		word_freq = []
-		
+		count=0;
 		for s in phword:
+			t = enword[count]
+			count = count +1
 			n = operator.countOf(words, s)
 			if n > 0:
-				word_freq.append([s])
+				word_freq.append([t])
 				word_freq.append([n])
 		
 		print(url2,'	frequency=	',word_freq)
-		
-		
