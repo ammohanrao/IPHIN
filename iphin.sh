@@ -2,5 +2,5 @@
 #!/usr/bin/env python
 
 NOW=$(date +"%m-%d-%Y")
-FILE="iphin1_$NOW.txt"
+FILE="iphin5_$NOW.txt"
 python3 iphin5.py >$FILE
