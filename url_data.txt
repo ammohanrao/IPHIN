@@ -1,0 +1,6 @@
+language	site
+english	http://www.thehindu.com/archive/web/2018/10/14/
+english	https://timesofindia.indiatimes.com/2018/10/20/archivelist/year-2018,month-10,starttime-43393.cms
+telugu	http://archives.eenadu.net/10-21-2018/home.aspx
+urdu	http://epaperdaily.com/indian/daily-sahafat-mumbai-lucknow-delhi-india.html
+bengali	https://www.aajbangla.in/
