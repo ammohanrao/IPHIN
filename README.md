@@ -25,6 +25,7 @@ Description of files:
 5). encffrq: list of "features + procedures" frequency reported in encephalitis diseases in literature.
 6). enpffrq: list of "features + procedures" frequency reported in encephalopathy diseases in literature.
 7). enp_autopsy: list of publications reporting autopsy and encephalopathy diseases.
+8). enc_autopsy: list of publications reporting autopsy and encephalitis diseases.
 
 END
 
