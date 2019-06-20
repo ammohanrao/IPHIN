@@ -26,6 +26,7 @@ Description of files:
 6). enpffrq: list of "features + procedures" frequency reported in encephalopathy diseases in literature.
 7). enp_autopsy: list of publications reporting autopsy and encephalopathy diseases.
 8). enc_autopsy: list of publications reporting autopsy and encephalitis diseases.
+9). prion_snodis: list of publications reporting prion diseases.
 
 END
 
